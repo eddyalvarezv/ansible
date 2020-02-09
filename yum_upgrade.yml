@@ -18,5 +18,5 @@
          pre_reboot_delay: 0
          post_reboot_delay: 30
          
-   - name: ckeck uptime
-     shell: uptime
+  - name: ckeck uptime
+    shell: uptime
