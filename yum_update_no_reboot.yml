@@ -1,0 +1,14 @@
+---
+- hosts: all
+  
+  become: yes
+  
+  tasks:
+  
+  - name: upgrade all packages
+    yum:
+      name: '*'
+      state: latest
+         
+  - name: ckeck uptime
+    shell: uptime
