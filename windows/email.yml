@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  
+  tasks:
+    
+    - name: Sending email using forwarder.nclmiami.ncl.com
+      mail:
+        host: forwarder.nclmiami.ncl.com
+        port: 25
+        sender: ansible@nclcorp.com
+        to: Eduardo Alvarez <ealvarez@nclcorp.com>
+        subject: Ansible Report
+        body: Windows servers pending updates.
+        attach: /root/reports/generated_report.html 
+        charset: us-ascii
+      delegate_to: localhost

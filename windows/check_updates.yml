@@ -1,0 +1,26 @@
+---
+
+- name: Checking pending updates.
+  hosts: win
+  gather_facts: False
+
+  tasks:
+
+    - name: Pending Updates
+      win_updates:
+         server_selection: managed_server
+         category_names:
+          - SecurityUpdates
+          - CriticalUpdates
+          - UpdateRollups
+          - DefinitionUpdates
+          - Updates
+          - Application
+          - FeaturePacks
+          - ServicePacks
+         state: searched
+      register: result
+
+    - name: print all returned values
+      debug:
+        msg: "{{ result }}"

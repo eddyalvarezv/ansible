@@ -1,0 +1,14 @@
+---
+- name: PowerShell
+  hosts: win
+  gather_facts: False
+
+  tasks:
+    
+    - name: Running
+      win_shell: Get-WmiObject -Namespace "root\ccm\clientsdk" -Class CCM_SoftwareUpdate
+      register: output
+
+    - name: Output
+      debug:
+        msg: "{{output.stdout_lines}}" 

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+}
+
+body {
+  background:#353a40;
+}
+
+table {
+  border-collapse: separate;
+  background:#fff;
+  @include border-radius(5px);
+  margin:50px auto;
+  @include box-shadow(0px 0px 5px rgba(0,0,0,0.3));
+}
+
+thead {
+  @include border-radius(5px);
+}
+
+thead th {
+  font-family: 'Patua One', monospace;
+  font-size:16px;
+  font-weight:400;
+  color:#fff;
+  @include text-shadow(1px 1px 0px rgba(0,0,0,0.5));
+  text-align:left;
+  padding:20px;
+  border-top:1px solid #858d99;
+  background: #353a40;
+
+  &:first-child {
+   @include border-top-left-radius(5px);
+  }
+
+  &:last-child {
+    @include border-top-right-radius(5px);
+  }
+}
+
+tbody tr td {
+  font-family: 'Open Sans', sans-serif;
+  font-weight:400;
+  color:#5f6062;
+  font-size:13px;
+  padding:20px 20px 20px 20px;
+  border-bottom:1px solid #e0e0e0;
+
+}
+
+tbody tr:nth-child(2n) {
+  background:#f0f3f5;
+}
+
+tbody tr:last-child td {
+  border-bottom:none;
+  &:first-child {
+    @include border-bottom-left-radius(5px);
+  }
+  &:last-child {
+    @include border-bottom-right-radius(5px);
+  }
+}
+
+span.highlight {
+    background-color: yellow;
+}
+</style>
+</head>
+<body>
+<table>
+    <thead>
+        <tr>
+            <th>Hostname</th>
+            <th>OS Version</th>
+            <th>IP</th>
+            <th>Uptime</th>
+            <th>Last Boot</th>
+            <th>Found Updates</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>HDQDVRAIAAS01V.NCLMIAMI.NCL.COM</td>
+            <td>Microsoft Windows Server 2016 Standard</td>
+            <td>['10.100.26.78']</td>
+            <td>25821</td>
+            <td>2020-07-06 17:43:13Z</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>HDQPVRADB01V.NCLMIAMI.NCL.COM</td>
+            <td>Microsoft Windows Server 2012 R2 Standard</td>
+            <td>['10.111.111.102', '10.100.21.117']</td>
+            <td>430731</td>
+            <td>2020-07-02 01:14:45Z</td>
+            <td>0</td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

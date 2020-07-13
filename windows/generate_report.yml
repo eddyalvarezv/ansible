@@ -1,0 +1,35 @@
+---
+
+- name: Build inventory report
+  hosts: win
+  gather_facts: True
+
+  vars:
+    #file_path: /root/reports/generated_report_{{ansible_date_time.date}}_{{ansible_date_time.time}}.html
+    file_path: /root/reports/generated_report.html
+
+  tasks:
+
+    - name: Pending Updates
+      win_updates:
+         server_selection: managed_server
+         state: searched
+         category_names:
+           - SecurityUpdates
+           - CriticalUpdates
+           - UpdateRollups
+           - DefinitionUpdates
+           - Updates
+      register: result
+
+    - name: create HTML report
+      template:
+        src: /root/reports/report.j2
+        dest: "{{ file_path }}"
+      delegate_to: localhost
+      run_once: true
+    
+    #- name: Email
+    #  include: email.yml
+
+- import_playbook: email.yml
