@@ -1,6 +1,7 @@
 --- 
 
 - name: Precheck
+  hosts: all
   gather_facts: True  
 
   vars:
