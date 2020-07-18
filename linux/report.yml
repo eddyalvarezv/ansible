@@ -1,7 +1,6 @@
 --- 
 
 - name: Precheck
-  hosts: linux
   gather_facts: True  
 
   vars:
