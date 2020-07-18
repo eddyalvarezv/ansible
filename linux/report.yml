@@ -1,0 +1,36 @@
+--- 
+
+- name: Precheck
+  hosts: linux
+  gather_facts: True  
+
+  vars:
+    #file_path: /root/reports/generated_report_{{ansible_date_time.date}}_{{ansible_date_time.time}}.html
+    file_path: /root/ansiplay/linux/generated_report.html
+ 
+  tasks:
+    - name: Checking parameters 
+      shell: |
+        hostname
+        cat /etc/redhat-release
+        uname -r
+        rpm -qa --last | grep "03 Jul 2020" |cut -f 1 -d " " | wc -l    
+      #- shell: uname -r
+      #- shell: uptime
+      #- shell: subscription-manager status | grep Overall\ Status
+      #- shell: systemctl is-active polkit
+      #  when: ansible_facts['distribution_major_version'] > "6"
+      #- shell: df -hP |grep -E 'var|usr'
+      #- shell: date
+      register: output
+    
+    - name: Debug imgresult
+      debug:
+        msg: "{{ output }}"   
+    
+    - name: create HTML report
+      template:
+        src: /root/ansiplay/linux/report.j2
+        dest: "{{ file_path }}"
+      delegate_to: localhost
+      run_once: true
